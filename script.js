@@ -1,40 +1,36 @@
-const cursor = document.getElementById('cursor');
-const trail = document.getElementById('cursor-trail');
-let trailX = 0, trailY = 0;
+const reticle = document.getElementById('reticle');
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top  = e.clientY + 'px';
-});
+if (reticle && finePointer) {
+  let rx = window.innerWidth / 2;
+  let ry = window.innerHeight / 2;
+  let tx = rx, ty = ry;
 
-// Trail follows with lerp
-function animateTrail() {
-  const cursorX = parseFloat(cursor.style.left) || 0;
-  const cursorY = parseFloat(cursor.style.top)  || 0;
-  trailX += (cursorX - trailX) * 0.12;
-  trailY += (cursorY - trailY) * 0.12;
-  trail.style.left = trailX + 'px';
-  trail.style.top  = trailY + 'px';
-  requestAnimationFrame(animateTrail);
+  document.addEventListener('mousemove', (e) => {
+    tx = e.clientX;
+    ty = e.clientY;
+  }, { passive: true });
+
+  const drawReticle = () => {
+    rx += (tx - rx) * 0.28;
+    ry += (ty - ry) * 0.28;
+    reticle.style.left = rx + 'px';
+    reticle.style.top  = ry + 'px';
+    requestAnimationFrame(drawReticle);
+  };
+  drawReticle();
+
+  // Lock onto interactive targets
+  const targets = 'a, button, .entry, .spec-row, .ledger-row';
+  document.querySelectorAll(targets).forEach((el) => {
+    el.addEventListener('mouseenter', () => reticle.classList.add('locked'));
+    el.addEventListener('mouseleave', () => reticle.classList.remove('locked'));
+  });
 }
-animateTrail();
-
-// Scale cursor on hover
-document.querySelectorAll('a, button, .project-card, .skill-tags span').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cursor.style.width  = '16px';
-    cursor.style.height = '16px';
-  });
-  el.addEventListener('mouseleave', () => {
-    cursor.style.width  = '8px';
-    cursor.style.height = '8px';
-  });
-});
 
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
+  nav.classList.toggle('compact', window.scrollY > 60);
 }, { passive: true });
 
 
@@ -45,81 +41,112 @@ const phrases = [
   'Hackathon builder',
   'Looking for internships',
 ];
-let phraseIdx = 0;
-let charIdx   = 0;
-let deleting  = false;
-const twEl    = document.getElementById('typewriter');
 
-function typeLoop() {
-  const current = phrases[phraseIdx];
-  if (!deleting) {
-    twEl.textContent = current.slice(0, ++charIdx);
-    if (charIdx === current.length) {
-      deleting = true;
-      setTimeout(typeLoop, 1800);
-      return;
+const twEl = document.getElementById('typewriter');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (twEl && reduceMotion) {
+  twEl.textContent = phrases[0];
+} else if (twEl) {
+  let phraseIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+
+  const typeLoop = () => {
+    const current = phrases[phraseIdx];
+
+    if (!deleting) {
+      twEl.textContent = current.slice(0, ++charIdx);
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(typeLoop, 2000);
+        return;
+      }
+      setTimeout(typeLoop, 62);
+    } else {
+      twEl.textContent = current.slice(0, --charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        setTimeout(typeLoop, 320);
+        return;
+      }
+      setTimeout(typeLoop, 28);
     }
-    setTimeout(typeLoop, 65);
-  } else {
-    twEl.textContent = current.slice(0, --charIdx);
-    if (charIdx === 0) {
-      deleting = false;
-      phraseIdx = (phraseIdx + 1) % phrases.length;
-      setTimeout(typeLoop, 300);
-      return;
-    }
-    setTimeout(typeLoop, 35);
-  }
+  };
+  typeLoop();
 }
-typeLoop();
 
-const revealEls = document.querySelectorAll(
-  '.project-card, .about-grid, .timeline-item, .contact-inner, .hero-tag, .stat'
+const riseEls = document.querySelectorAll(
+  '.entry, .ledger-row, .spec-row, .ro-cell, .contact-lede, .contact-body, .contact-email, .crow, .about-prose > p, .titleblock'
 );
+riseEls.forEach((el) => el.classList.add('rise'));
 
-revealEls.forEach(el => el.classList.add('reveal'));
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      // Stagger children of grids
-      const delay = entry.target.closest('.projects-grid') || entry.target.closest('.timeline')
-        ? Array.from(entry.target.parentElement.children).indexOf(entry.target) * 120
-        : 0;
-      setTimeout(() => entry.target.classList.add('visible'), delay);
-      observer.unobserve(entry.target);
-    }
+const riseObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const siblings = Array.from(entry.target.parentElement.children);
+    const delay = Math.min(siblings.indexOf(entry.target), 6) * 80;
+    setTimeout(() => entry.target.classList.add('shown'), delay);
+    riseObserver.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-revealEls.forEach(el => observer.observe(el));
+riseEls.forEach((el) => riseObserver.observe(el));
 
-const termLines = document.querySelectorAll('.t-line');
-termLines.forEach((line, i) => {
-  line.style.opacity = '0';
-  line.style.transform = 'translateX(-8px)';
-  line.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-  setTimeout(() => {
-    line.style.opacity = '1';
-    line.style.transform = 'translateX(0)';
-  }, 800 + i * 120);
-});
-
-
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href') === '#' + entry.target.id) {
-          link.style.color = 'var(--text)';
-        }
-      });
-    }
+const headObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('plotted');
+    headObserver.unobserve(entry.target);
   });
 }, { threshold: 0.5 });
 
-sections.forEach(s => sectionObserver.observe(s));
+document.querySelectorAll('.head').forEach((h) => headObserver.observe(h));
+
+const termLines = document.querySelectorAll('.t-line');
+if (!reduceMotion) {
+  termLines.forEach((line, i) => {
+    line.style.opacity = '0';
+    line.style.transform = 'translateX(-6px)';
+    line.style.transition = 'opacity 0.32s ease, transform 0.32s ease';
+    setTimeout(() => {
+      line.style.opacity = '1';
+      line.style.transform = 'none';
+    }, 700 + i * 110);
+  });
+}
+
+const sheets = [
+  { id: 'home',       num: '00', name: 'Cover' },
+  { id: 'about',      num: '01', name: 'About' },
+  { id: 'projects',   num: '02', name: 'Projects' },
+  { id: 'experience', num: '03', name: 'Experience' },
+  { id: 'contact',    num: '04', name: 'Contact' },
+];
+
+const siNum = document.getElementById('si-num');
+const siName = document.getElementById('si-name');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const setSheet = (id) => {
+  const sheet = sheets.find((s) => s.id === id);
+  if (!sheet) return;
+  siNum.textContent = sheet.num;
+  siName.textContent = sheet.name;
+  navLinks.forEach((link) => {
+    link.classList.toggle('current', link.getAttribute('href') === '#' + id);
+  });
+};
+
+const sheetObserver = new IntersectionObserver((entries) => {
+  const visible = entries
+    .filter((e) => e.isIntersecting)
+    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+  if (visible) setSheet(visible.target.id);
+}, { threshold: [0.15, 0.4, 0.7], rootMargin: '-20% 0px -35% 0px' });
+
+sheets.forEach((s) => {
+  const el = document.getElementById(s.id);
+  if (el) sheetObserver.observe(el);
+});

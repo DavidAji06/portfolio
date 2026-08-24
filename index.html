@@ -3,349 +3,398 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>David Ajidagba — Software Engineer</title>
+  <title>David Ajidagba · Software Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- NOISE OVERLAY -->
-  <div class="noise"></div>
+  <div class="substrate" aria-hidden="true"></div>
 
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-trail" id="cursor-trail"></div>
+  <div class="frame" aria-hidden="true">
+    <span class="reg reg-tl"></span>
+    <span class="reg reg-tr"></span>
+    <span class="reg reg-bl"></span>
+    <span class="reg reg-br"></span>
+  </div>
 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <a href="#home" class="nav-logo">DA<span class="accent">.</span></a>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <a href="#contact" class="nav-cta">Hire me</a>
-  </nav>
+  <!-- recticle settings -->
+  <div class="reticle" id="reticle" aria-hidden="true">
+    <span class="reticle-h"></span>
+    <span class="reticle-v"></span>
+  </div>
 
-  <!-- HERO -->
+  <div class="sheet-index" id="sheet-index" aria-hidden="true">
+    <span class="si-num" id="si-num">00</span>
+    <span class="si-sep">/</span>
+    <span class="si-total">04</span>
+    <span class="si-name" id="si-name">Cover</span>
+  </div>
+
+  <header class="nav" id="nav">
+    <a href="#home" class="nav-mark">
+      <span class="nav-mark-initials">D.A</span>
+      <span class="nav-mark-rule"></span>
+      <span class="nav-mark-role">Aspiring software engineer</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#about"><span class="nl-num">01</span>About</a>
+      <a href="#projects"><span class="nl-num">02</span>Projects</a>
+      <a href="#experience"><span class="nl-num">03</span>Experience</a>
+      <a href="#contact"><span class="nl-num">04</span>Contact</a>
+    </nav>
+    <a href="#contact" class="nav-cta">Contact me<span class="cta-arrow">&#8599;</span></a>
+  </header>
+
+  <main>
+
+  <!-- cover-->
   <section class="hero" id="home">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-content">
-      <div class="hero-tag">
-        <span class="dot"></span>
-        Available for 2026/2027 internships and 2027 placements
+    <div class="hero-main">
+      <div class="hero-left">
+        <p class="stamp">
+          <span class="stamp-lamp"></span>
+          Available for 2026/2027 internships and 2027 placements
+        </p>
+
+        <h1 class="hero-name">
+          <span class="hn-line">David</span>
+          <span class="hn-line hn-surname">Ajidagba</span>
+        </h1>
+
+        <p class="hero-prompt">
+          <span class="hp-caret">&#8250;</span><span id="typewriter"></span><span class="hp-cursor">_</span>
+        </p>
+
+        <p class="hero-sub">
+          CS student at the University of Manchester &middot; MoD Cyber Bursary holder &middot;
+          Aiming to improve my skills and keep building cool stuff. Check out my projects below! :)
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="link-solid">View my work</a>
+          <a href="https://github.com/DavidAji06" target="_blank" rel="noopener" class="link-rule">GitHub<span class="lr-arrow">&#8599;</span></a>
+        </div>
       </div>
-      <h1 class="hero-name">
-        David<br />
-        <span class="hero-name-accent">Ajidagba</span>
-      </h1>
-      <div class="hero-typewriter">
-        <span class="tw-prefix">$ </span><span id="typewriter"></span><span class="cursor-blink">▋</span>
-      </div>
-      <p class="hero-sub">
-        CS student at the University of Manchester · MoD Cyber Bursary holder ·
-        Aiming to improve my skills and keep building cool stuff. Check out my projects below! :)
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View my work</a>
-        <a href="https://github.com/DavidAji06" target="_blank" rel="noopener" class="btn-ghost">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
+
+      <div class="hero-right">
+        <div class="console">
+          <div class="console-head">
+            <span class="ch-label">Terminal log</span>
+            <span class="ch-meta">david@portfolio:~</span>
+          </div>
+          <div class="console-body">
+            <div class="t-line"><span class="t-cmd">$ git log --oneline</span></div>
+            <div class="t-line t-dim"><span class="t-hash">a3f2c1b</span> Deploy Schedula v2.0</div>
+            <div class="t-line t-dim"><span class="t-hash">9d8e4a2</span> Add LSTM stock prediction model</div>
+            <div class="t-line t-dim"><span class="t-hash">5c7b3f9</span> ASL Robo-Hand servo calibration</div>
+            <div class="t-line t-dim"><span class="t-hash">2e1a8d4</span> Fix JWT refresh token edge case</div>
+            <div class="t-line"><span class="t-cmd">$ whoami</span></div>
+            <div class="t-line"><span class="t-out">david-ajidagba</span></div>
+            <div class="t-line"><span class="t-cmd">$ cat skills.txt</span></div>
+            <div class="t-line t-out">React &middot; Python &middot; Java &middot; FastAPI</div>
+            <div class="t-line t-out">PostgreSQL &middot; PyTorch &middot; Git</div>
+            <div class="t-line t-out">Raspberry Pi &middot; C &middot; Linux</div>
+            <div class="t-line"><span class="t-cmd t-blink">&#9608;</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="terminal-window">
-        <div class="terminal-bar">
-          <span class="t-dot t-red"></span>
-          <span class="t-dot t-yellow"></span>
-          <span class="t-dot t-green"></span>
-          <span class="t-title">david@portfolio:~</span>
-        </div>
-        <div class="terminal-body">
-          <div class="t-line"><span class="t-cmd">$ git log --oneline</span></div>
-          <div class="t-line t-dim"><span class="t-hash">a3f2c1b</span> Deploy Schedula v2.0</div>
-          <div class="t-line t-dim"><span class="t-hash">9d8e4a2</span> Add LSTM stock prediction model</div>
-          <div class="t-line t-dim"><span class="t-hash">5c7b3f9</span> ASL Robo-Hand servo calibration</div>
-          <div class="t-line t-dim"><span class="t-hash">2e1a8d4</span> Fix JWT refresh token edge case</div>
-          <div class="t-line"><span class="t-cmd">$ whoami</span></div>
-          <div class="t-line"><span class="t-out">david-ajidagba</span></div>
-          <div class="t-line"><span class="t-cmd">$ cat skills.txt</span></div>
-          <div class="t-line t-accent">React · Python · Java · FastAPI</div>
-          <div class="t-line t-accent">PostgreSQL · PyTorch · Git</div>
-          <div class="t-line t-accent">Raspberry Pi · C · Linux</div>
-          <div class="t-line blink-line"><span class="t-cmd">█</span></div>
-        </div>
+
+    <div class="titleblock">
+      <div class="tb-cell">
+        <span class="tb-k">Drawn by</span>
+        <span class="tb-v">David Ajidagba</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-k">Institution</span>
+        <span class="tb-v">University of Manchester</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-k">Status</span>
+        <span class="tb-v">Open to internships</span>
+      </div>
+      <div class="tb-cell">
+        <span class="tb-k">Location</span>
+        <span class="tb-v">Manchester, UK</span>
+      </div>
+      <div class="tb-cell tb-cell-rev">
+        <span class="tb-k">Rev</span>
+        <span class="tb-v">2026</span>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="about section" id="about">
-    <div class="section-label">// about</div>
-    <div class="about-grid">
-      <div class="about-text">
-        <h2>I build things<br /><span class="accent">end-to-end.</span></h2>
+  <!-- about-->
+  <section class="band" id="about">
+    <div class="head">
+      <span class="head-num">01</span>
+      <h2 class="head-title">About</h2>
+      <span class="head-rule"></span>
+      <span class="head-note">Profile</span>
+    </div>
+
+    <div class="about">
+      <div class="about-prose">
+        <p class="lede">
+          Learning <span class="ochre">end-to-end.</span>
+        </p>
         <p>
-          First-year Computer Science student at the University of Manchester, 
+          First-year Computer Science student at the University of Manchester,
           previous <strong>Ministry of Defence Strategic Command Cyber Bursary</strong> recipient
         </p>
         <p>
           Interested in full-stack development, machine learning, and hardware projects. Want to develop my
-          skills across the stack, work on interesting problems, and contribute to impactful projects. 
+          skills across the stack, work on interesting problems, and contribute to impactful projects.
           Eager to learn and take on new challenges
         </p>
-        <div class="about-stats">
-          <div class="stat">
-            <span class="stat-num">3+</span>
-            <span class="stat-label">Full-stack projects</span>
+
+        <div class="readout">
+          <div class="ro-cell">
+            <span class="ro-v">3+</span>
+            <span class="ro-k">Full-stack projects</span>
           </div>
-          <div class="stat">
-            <span class="stat-num">3+</span>
-            <span class="stat-label">Hackathons</span>
+          <div class="ro-cell">
+            <span class="ro-v">3+</span>
+            <span class="ro-k">Hackathons</span>
           </div>
-          <div class="stat">
-            <span class="stat-num">MoD</span>
-            <span class="stat-label">Cyber Bursary</span>
+          <div class="ro-cell">
+            <span class="ro-v">MoD</span>
+            <span class="ro-k">Cyber Bursary</span>
           </div>
         </div>
       </div>
-      <div class="about-skills">
-        <div class="skill-group">
-          <h4>Languages</h4>
-          <div class="skill-tags">
-            <span>Python</span><span>Java</span><span>JavaScript</span>
-            <span>TypeScript</span><span>C</span><span>SQL</span>
-          </div>
+
+      <div class="spec">
+        <p class="spec-cap">Specification</p>
+        <div class="spec-row">
+          <span class="spec-k">Languages</span>
+          <span class="spec-lead"></span>
+          <span class="spec-v">Python, Java, JavaScript, TypeScript, C#, SQL</span>
         </div>
-        <div class="skill-group">
-          <h4>Frameworks</h4>
-          <div class="skill-tags">
-            <span>React</span><span>FastAPI</span><span>Flask</span>
-            <span>Vite</span><span>PyTorch</span>
-          </div>
+        <div class="spec-row">
+          <span class="spec-k">Frameworks</span>
+          <span class="spec-lead"></span>
+          <span class="spec-v">React, FastAPI, Flask, Vite, PyTorch</span>
         </div>
-        <div class="skill-group">
-          <h4>Tools & Infra</h4>
-          <div class="skill-tags">
-            <span>PostgreSQL</span><span>Supabase</span><span>Git</span>
-            <span>Linux</span><span>Raspberry Pi</span>
-          </div>
+        <div class="spec-row">
+          <span class="spec-k">Tools &amp; Infra</span>
+          <span class="spec-lead"></span>
+          <span class="spec-v">PostgreSQL, Supabase, Git, Linux, Raspberry Pi</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="projects section" id="projects">
-    <div class="section-label">// projects</div>
-    <h2 class="section-title">Selected work</h2>
+  <!-- projects-->
+  <section class="band" id="projects">
+    <div class="head">
+      <span class="head-num">02</span>
+      <h2 class="head-title">Selected work</h2>
+      <span class="head-rule"></span>
+      <span class="head-note">4 records</span>
+    </div>
 
-    <div class="projects-grid">
+    <div class="log">
 
-      <!-- SCHEDULA -->
-      <div class="project-card featured" data-index="01">
-        <div class="project-card-inner">
-          <div class="project-meta">
-            <div class="project-tag">Full-stack · Personal project</div>
-            <div class="project-links">
-              <a href="https://github.com/DavidAji06/Schedula" target="_blank" rel="noopener">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-title">Schedula</h3>
-          <p class="project-desc">
-            A full-stack productivity app with dark-themed calendar (weekly/monthly views), 
-            recurring events, to-do sidebar, and JWT authentication. Built from scratch — 
+      <article class="entry">
+        <span class="entry-no">01</span>
+        <div class="entry-meta">
+          <span class="em-row"><span class="em-k">Class</span><span class="em-v">Full-stack</span></span>
+          <span class="em-row"><span class="em-k">Type</span><span class="em-v">Personal project</span></span>
+          <a class="em-link" href="https://github.com/DavidAji06/Schedula" target="_blank" rel="noopener">Repository<span class="lr-arrow">&#8599;</span></a>
+        </div>
+        <div class="entry-body">
+          <h3 class="entry-title">Schedula</h3>
+          <p class="entry-desc">
+            A full-stack productivity app with dark-themed calendar (weekly/monthly views),
+            recurring events, to-do sidebar, and JWT authentication. Built from scratch:
             designed the database schema, REST API, and every UI component.
           </p>
-          <div class="project-stack">
-            <span>React</span><span>FastAPI</span><span>PostgreSQL</span>
-            <span>Supabase</span><span>JWT</span><span>Vite</span>
-          </div>
+          <ul class="stack">
+            <li>React</li><li>FastAPI</li><li>PostgreSQL</li>
+            <li>Supabase</li><li>JWT</li><li>Vite</li>
+          </ul>
         </div>
-        <div class="project-glow"></div>
-      </div>
+      </article>
 
-      <!-- STOCK SIGNAL -->
-      <div class="project-card featured" data-index="02">
-        <div class="project-card-inner">
-          <div class="project-meta">
-            <div class="project-tag">ML · Team project</div>
-            <div class="project-links">
-              <a href="https://github.com/ThomasOpperPhillips/COMP10120-Group-Project-Y5" target="_blank" rel="noopener">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-title">The Stock Signal</h3>
-          <p class="project-desc">
-            Dark-themed stock market dashboard with real-time chart visualisation and 
-            a PyTorch LSTM model for price prediction. Led all frontend engineering — 
+      <article class="entry">
+        <span class="entry-no">02</span>
+        <div class="entry-meta">
+          <span class="em-row"><span class="em-k">Class</span><span class="em-v">Machine learning</span></span>
+          <span class="em-row"><span class="em-k">Type</span><span class="em-v">Team project</span></span>
+          <a class="em-link" href="https://github.com/ThomasOpperPhillips/COMP10120-Group-Project-Y5" target="_blank" rel="noopener">Repository<span class="lr-arrow">&#8599;</span></a>
+        </div>
+        <div class="entry-body">
+          <h3 class="entry-title">The Stock Signal</h3>
+          <p class="entry-desc">
+            Dark-themed stock market dashboard with real-time chart visualisation and
+            a PyTorch LSTM model for price prediction. Led all frontend engineering:
             component architecture, CSS design system, and Git conflict resolution.
           </p>
-          <div class="project-stack">
-            <span>React</span><span>Chart.js</span><span>Flask</span>
-            <span>PyTorch</span><span>SQLite</span><span>Python</span>
-          </div>
+          <ul class="stack">
+            <li>React</li><li>Chart.js</li><li>Flask</li>
+            <li>PyTorch</li><li>SQLite</li><li>Python</li>
+          </ul>
         </div>
-        <div class="project-glow"></div>
-      </div>
+      </article>
 
-      <!-- ASL ROBO-HAND -->
-      <div class="project-card featured" data-index="03">
-        <div class="project-card-inner">
-          <div class="project-meta">
-            <div class="project-tag">Hardware · 24-hr Hackathon</div>
-            <div class="project-links">
-              <a href="https://github.com/DavidAji06" target="_blank" rel="noopener">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-title">ASL Robo-Hand</h3>
-          <p class="project-desc">
-            Built a robotic hand that signs the ASL alphabet in 24 hours at Hackabot. 
-            Owned all software: servo angle mappings for all 26 letters, serial 
-            communication protocol between two Raspberry Pi Picos, and the laptop 
+      <article class="entry">
+        <span class="entry-no">03</span>
+        <div class="entry-meta">
+          <span class="em-row"><span class="em-k">Class</span><span class="em-v">Hardware</span></span>
+          <span class="em-row"><span class="em-k">Type</span><span class="em-v">24-hr hackathon</span></span>
+          <a class="em-link" href="https://github.com/DavidAji06" target="_blank" rel="noopener">Repository<span class="lr-arrow">&#8599;</span></a>
+        </div>
+        <div class="entry-body">
+          <h3 class="entry-title">ASL Robo-Hand</h3>
+          <p class="entry-desc">
+            Built a robotic hand that signs the ASL alphabet in 24 hours at Hackabot.
+            Owned all software: servo angle mappings for all 26 letters, serial
+            communication protocol between two Raspberry Pi Picos, and the laptop
             joystick UI for real-time control.
           </p>
-          <div class="project-stack">
-            <span>Raspberry Pi Pico</span><span>MicroPython</span>
-            <span>PCA9685</span><span>Serial</span><span>Hardware</span>
-          </div>
+          <ul class="stack">
+            <li>Raspberry Pi Pico</li><li>MicroPython</li>
+            <li>PCA9685</li><li>Serial</li><li>Hardware</li>
+          </ul>
         </div>
-        <div class="project-glow"></div>
-      </div>
+      </article>
 
-      <!-- TIRAMISU -->
-      <div class="project-card featured" data-index="01">
-        <div class="project-card-inner">
-          <div class="project-meta">
-            <div class="project-tag">Frontend · Google Hackathon</div>
-            <div class="project-links">
-              <a href="https://github.com/Harrishayy/tiramisu" target="_blank" rel="noopener">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-              </a>
-            </div>
-          </div>
-          <h3 class="project-title">Tiramisu</h3>
-          <p class="project-desc">
+      <article class="entry">
+        <span class="entry-no">04</span>
+        <div class="entry-meta">
+          <span class="em-row"><span class="em-k">Class</span><span class="em-v">Frontend</span></span>
+          <span class="em-row"><span class="em-k">Type</span><span class="em-v">Google hackathon</span></span>
+          <a class="em-link" href="https://github.com/Harrishayy/tiramisu" target="_blank" rel="noopener">Repository<span class="lr-arrow">&#8599;</span></a>
+        </div>
+        <div class="entry-body">
+          <h3 class="entry-title">Tiramisu</h3>
+          <p class="entry-desc">
             A Google AI hackathon project that integrates the Gemini and YouTube Data APIs to create storyboards from trending video data.
             Allowing small businesses to create low-cost marketing content. Spearheaded frontend development, building the UI.
           </p>
-          <div class="project-stack">
-            <span>TypeScript</span><span>Python</span><span>CSS</span>
-          </div>
+          <ul class="stack">
+            <li>TypeScript</li><li>Python</li><li>CSS</li>
+          </ul>
         </div>
-        <div class="project-glow"></div>
-      </div>
+      </article>
 
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
-    <section class="experience section" id="experience">
-    <div class="section-label">// experience</div>
-    <h2 class="section-title">Where I've been</h2>
-    <div class="timeline">
+  <!-- experience-->
+  <section class="band" id="experience">
+    <div class="head">
+      <span class="head-num">03</span>
+      <h2 class="head-title">Where I've been</h2>
+      <span class="head-rule"></span>
+      <span class="head-note">Logbook</span>
+    </div>
 
-      <div class="timeline-item">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-date">2024</div>
-          <h4>KPMG Insight Day</h4>
-          <p>Technology & engineering track — explored how consulting and technology intersect at scale within a Big Four environment. 
-            Designed an ESG-focused client solution using AI + blockchain, presented our solution as a 15 slide proposal to 6 senior partners. 
-            Evaluated our solution upon questioning from seniors and peers.
-          </p>
+    <ol class="ledger">
+
+      <li class="ledger-row">
+        <div class="lr-date"><span>2024</span></div>
+        <div class="lr-body">
+          <h4 class="lr-title">KPMG Insight Day</h4>
+          <p>Technology &amp; engineering track: explored how consulting and technology intersect at scale within a Big Four environment.
+            Designed an ESG-focused client solution using AI + blockchain, presented our solution as a 15 slide proposal to 6 senior partners.
+            Evaluated our solution upon questioning from seniors and peers.</p>
         </div>
-      </div>
+      </li>
 
-      <div class="timeline-item">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-date">2024 — 2025</div>
-          <h4>MoD Strategic Command Cyber Bursary</h4>
-          <p>Ministry of Defence — one of a small cohort of students selected nationally for this competitive bursary.
-             Recognised for academic excellence and potential in cybersecurity, with 
-             funding and mentorship tied to continued study and development in the field.</p>
+      <li class="ledger-row">
+        <div class="lr-date"><span>2024&ndash;2025</span></div>
+        <div class="lr-body">
+          <h4 class="lr-title">MoD Strategic Command Cyber Bursary</h4>
+          <p>Ministry of Defence: one of a small cohort of students selected nationally for this competitive bursary.
+            Recognised for academic excellence and potential in cybersecurity, with
+            funding and mentorship tied to continued study and development in the field.</p>
         </div>
-      </div>
+      </li>
 
-      <div class="timeline-item">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-date">2026</div>
-          <h4>Encode Club Hackathon — 32-hour Hackathon</h4>
-          <p>Horizn — an AI-powered DeFi dashboard that automatically rebalances 
-            digital asset portfolios based on live risk signals. Led all frontend development: built the dashboard's data visualisation and 
+      <li class="ledger-row">
+        <div class="lr-date"><span>2026</span></div>
+        <div class="lr-body">
+          <h4 class="lr-title">Encode Club Hackathon<span class="lr-tag">32-hour</span></h4>
+          <p>Horizn, an AI-powered DeFi dashboard that automatically rebalances
+            digital asset portfolios based on live risk signals. Led all frontend development: built the dashboard's data visualisation and
             portfolio views in React and TypeScript, owned the CSS design system, and handled deployment on Vercel.</p>
         </div>
-      </div>
+      </li>
 
-      <div class="timeline-item">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-date">2026</div>
-          <h4>Microsoft × Sutton Trust × EPAM</h4>
-          <p>Workplace Safari Day — hands-on exposure to enterprise software engineering workflows and cloud infrastructure at Microsoft. 
-            Competed in a team-based hackathon, building a web app to help students understand more about higher education before applying. 
-            Competed in mathematical and statistical challenges.
-          </p>
+      <li class="ledger-row">
+        <div class="lr-date"><span>2026</span></div>
+        <div class="lr-body">
+          <h4 class="lr-title">Microsoft &times; Sutton Trust &times; EPAM</h4>
+          <p>Workplace Safari Day: hands-on exposure to enterprise software engineering workflows and cloud infrastructure at Microsoft.
+            Competed in a team-based hackathon, building a web app to help students understand more about higher education before applying.
+            Competed in mathematical and statistical challenges.</p>
         </div>
-      </div>
+      </li>
 
-      <div class="timeline-item">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-date">2026</div>
-          <h4>Hackabot — 24-hour Hackathon</h4>
-          <p>Built a robotic hand that signs the ASL alphabet with a team of 4 members. 
-            Owned all software under time pressure: mapped servo angles for numbers 0-9, 
+      <li class="ledger-row">
+        <div class="lr-date"><span>2026</span></div>
+        <div class="lr-body">
+          <h4 class="lr-title">Hackabot<span class="lr-tag">24-hour</span></h4>
+          <p>Built a robotic hand that signs the ASL alphabet with a team of 4 members.
+            Owned all software under time pressure: mapped servo angles for numbers 0-9,
             wrote the serial communication protocol linking two Raspberry Pi Picos. Built as a tool to learn
-           ASL and get direct feedback.</p>
+            ASL and get direct feedback.</p>
         </div>
-      </div>
+      </li>
 
-      <div class="timeline-item">
-        <div class="tl-dot"></div>
-        <div class="tl-content">
-          <div class="tl-date">2026</div>
-          <h4>Tiramisu — Google UK Student AI Hackathon 2026</h4>
+      <li class="ledger-row">
+        <div class="lr-date"><span>2026</span></div>
+        <div class="lr-body">
+          <h4 class="lr-title">Tiramisu<span class="lr-tag">Google UK Student AI Hackathon 2026</span></h4>
           <p>Selected as 1 of 50 hackers from 1000+ applicants at the Google AI hackathon.</p>
-          <p>Spearheaded frontend development for "Tiramisu," integrating the Gemini and YouTube Data APIs to turn trending video data 
-            into ready-to-shoot storyboards — a low-cost marketing alternative for small businesses.</p>
+          <p>Spearheaded frontend development for "Tiramisu," integrating the Gemini and YouTube Data APIs to turn trending video data
+            into ready-to-shoot storyboards, a low-cost marketing alternative for small businesses.</p>
         </div>
-      </div>
+      </li>
 
-    </div>
+    </ol>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact section" id="contact">
-    <div class="section-label">// contact</div>
-    <div class="contact-inner">
-      <h2>Let's build<br /><span class="accent">something.</span></h2>
-      <p>I'm actively looking for software engineering internships and summer placements. 
+  <!-- contact-->
+  <section class="band band-end" id="contact">
+    <div class="head">
+      <span class="head-num">04</span>
+      <h2 class="head-title">Contact</h2>
+      <span class="head-rule"></span>
+      <span class="head-note">End of sheet</span>
+    </div>
+
+    <div class="contact">
+      <p class="contact-lede">Happy to <span class="ochre">chat.</span></p>
+      <p class="contact-body">I'm actively looking for software engineering internships and summer placements.
         If you're building something interesting, I'd love to talk.</p>
-      <a href="mailto:davidaji309@gmail.com" class="btn-primary btn-large">
-        davidaji309@gmail.com
-      </a>
-      <div class="contact-links">
-        <a href="https://github.com/DavidAji06" target="_blank" rel="noopener">GitHub</a>
-        <span class="sep">·</span>
-        <a href="https://www.linkedin.com/in/david-ajidagba" target="_blank" rel="noopener">LinkedIn</a>
+
+      <a href="mailto:davidaji309@gmail.com" class="contact-email">davidaji309@gmail.com</a>
+
+      <div class="contact-rows">
+        <a class="crow" href="https://github.com/DavidAji06" target="_blank" rel="noopener">
+          <span class="crow-k">GitHub</span>
+          <span class="crow-lead"></span>
+          <span class="crow-v">DavidAji06<span class="lr-arrow">&#8599;</span></span>
+        </a>
+        <a class="crow" href="https://www.linkedin.com/in/david-ajidagba" target="_blank" rel="noopener">
+          <span class="crow-k">LinkedIn</span>
+          <span class="crow-lead"></span>
+          <span class="crow-v">david-ajidagba<span class="lr-arrow">&#8599;</span></span>
+        </a>
       </div>
     </div>
   </section>
+
+  </main>
 
   <footer class="footer">
-    <span>David Ajidagba · 2026</span>
+    <span>David Ajidagba &middot; 2026</span>
     <span>Manchester</span>
   </footer>
 
